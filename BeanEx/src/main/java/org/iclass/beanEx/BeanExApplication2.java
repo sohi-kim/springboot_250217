@@ -14,7 +14,9 @@ public class BeanExApplication2 {
 		SpringApplication.run(BeanExApplication2.class, args);
 		
 		//사용자 요청은 컨트롤러가 처리하므로 MyTestController bean 만 가져와 메소드 실행
-		YourTestController controller =context.getBean(YourTestController.class);
+//		YourTestController controller =context.getBean(YourTestController.class);
+		YourTestController controller 
+				=(YourTestController) context.getBean("yourTestController");
 		controller.test();
 	}
 

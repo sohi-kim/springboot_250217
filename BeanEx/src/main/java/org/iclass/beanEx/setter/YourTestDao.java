@@ -1,10 +1,12 @@
 package org.iclass.beanEx.setter;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Component
+//@Component
+@Repository
 public class YourTestDao {
 	
 	public YourTestDao() {
