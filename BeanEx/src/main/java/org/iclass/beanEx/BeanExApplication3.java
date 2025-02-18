@@ -16,11 +16,16 @@ public class BeanExApplication3 {
 	public static void main(String[] args) {
 		SpringApplication.run(BeanExApplication3.class, args);
 		
+		@SuppressWarnings("resource")
 		ApplicationContext context =
 				new AnnotationConfigApplicationContext(TestConfig.class);
 		
-		List<String> temp =(List<String>) context.getBean("nuz");
+//		List<String> temp =(List<String>) context.getBean("nuz");
+		@SuppressWarnings("unchecked")
+		List<String> temp =context.getBean(java.util.List.class);
 		log.info("메소드로 만들어진 bean : {}, {}",temp, temp.getClass().getName());
+		
+		
 		
 	}
 
