@@ -2,6 +2,7 @@ package org.iclass.webEx.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,14 +14,26 @@ public class TestController {
 	// Get 요청 처리. URL(servlet path) 은 join
 	@GetMapping("join")
 	public String join() {
-		return "join";   //join.html 파일 지정
+		return "join";   //join.html 파일 지정 (View)
 	}
 
 	@GetMapping("login")
 	public String login() {
-		return "login";  //login.html 파일 지정
+		return "login";  //login.html 파일 지정 (View)
 	}
 	
+	@GetMapping("write")
+	public String write() {
+		return "write";
+	}
+	
+	@PostMapping("save")
+	public String save(String title, String content) {
+		log.info("post 요청을 처리하고 context path(/) 로 리다이렉트 합니다.");
+		log.info("title : {}", title);
+		log.info("content : {}", content);
+		return "redirect:login";   // "redirect:URL"
+	}
 	
 	
 }

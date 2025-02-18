@@ -6,5 +6,13 @@
 </head>
 <body>
 	<h2>글쓰기</h2>
+	<form action="save" method="post">
+	<!-- title,content 에 입력한 값이 전달되는 URL : save
+	     컨트롤러의 save 매핑 메소드는 이 2개의 값을 저장.
+	 -->
+		<input type="text" name="title">
+		<input type="text" name="content">
+		<button type="submit">제출</button>
+	</form>
 </body>
 </html>
