@@ -39,5 +39,17 @@ public class AttributeTestController {
 		model.addAttribute("dto", dto);
 		return "community/read";
 	}
+	
+	@GetMapping("exercise")
+	public String exercise(Model model) {
+		List<TestDto> list = new ArrayList<>();
+		list.add(new TestDto("홍길동",22,"서울","남자"));
+		list.add(new TestDto("홍길순",24,"인천","여자"));
+		list.add(new TestDto("김다현",27,"경기","여자"));
+		list.add(new TestDto("이나연",25,"서울","여자"));
+		model.addAttribute("list", list);
+		return "exercise";   // exercise.html
+	}
+	
 
 }
