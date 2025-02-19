@@ -20,12 +20,20 @@
 		<li><a href="list?name=트와이스&age=25">파라미터 연습1</a></li>
 		<li><a href="listA?name=트와이스&age=25&address=서울&gender=male">파라미터 연습2</a></li>
 		<li><a href="listB?name=뉴진스&age=22&address=LA&gender=female">파라미터 연습3</a></li>
-		<!-- 파라미터가 없는 경우 처리 (age 파라미터 없음) -->
-		<li><a href="listA?name=아이브&address=서울&gender=male">파라미터 연습4</a></li>
 		<!-- 파라미터가 없는 경우 처리 (name 파라미터 없음) -->
-		<li><a href="listA?age=25&address=서울&gender=male">파라미터 연습5</a></li>
+		<li><a href="listA?age=25&address=서울&gender=male">파라미터 연습4</a></li>
+		<!-- 파라미터가 없는 경우 처리 (age 파라미터 없음) : int 형은 컨트롤러에서 추가적인 설정 필요-->
+		<li><a href="listA?name=아이브&address=서울&gender=male">파라미터 연습5</a></li>
+		<!-- 파라미터가 없는 경우 처리 (age 파라미터 없음) : dto 타입으로 저장할 때는 정상 실행 -->
 		<li><a href="listB?name=소녀시대&address=LA&gender=female">파라미터 연습6</a></li>
+		<!-- 파라미터값이 캐스팅 오류 발생하는 처리 : 오류 페이지 설정 (todo)-->
+		<li><a href="listB?name=소녀시대&age=ABC&address=LA&gender=female">파라미터 연습7</a></li>
 	</ul>
+	<h2>View 에 데이터를 전달하기 : 애트리뷰트</h2>
+	<ul>
+		<li><a href="/community/list">커뮤니티 글목록</a></li>
+	</ul>	
+	
 	
 	
 	
