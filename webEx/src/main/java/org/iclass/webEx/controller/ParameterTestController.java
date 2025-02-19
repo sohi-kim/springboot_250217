@@ -20,7 +20,10 @@ public class ParameterTestController {
 	}
 	
 	@GetMapping("listA")
-	public String listA(String name, int age, String address, String gender) {
+	// 파라미터 중 int age 는 문자열을 정수로 변환하여 저장. 값이 없으면 null -> 오류
+	//	-> 파라미터의 기본값 설정
+	public String listA(String name, @RequestParam(defaultValue = "0") int age, 
+						String address, String gender) {
 		log.info("파라미터 : {} , {} , {} , {} " , name,age,address,gender);
 		return "list";
 	}
@@ -33,6 +36,14 @@ public class ParameterTestController {
 					dto.getName(),dto.getAge(),dto.getAddress(),dto.getGender());
 		return "list";
 	}
+	
+	@PostMapping("regist")
+	public String regist(TestDto dto) {
+		log.info("Post 요청 TestDto : {}",dto);
+		
+		return "redirect:/";
+	}
+	
 	
 	
 	@GetMapping("write")

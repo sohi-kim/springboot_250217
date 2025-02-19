@@ -10,8 +10,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class TestDto {
-	private String name;
-	private int age;
+	private String name;		// 객체 기본값 String 은 null
+	private int age;			// double, int 수치형식은 0
 	private String address;
 	private String gender;
 
