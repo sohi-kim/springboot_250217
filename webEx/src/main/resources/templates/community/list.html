@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<!-- 서버사이드 템플릿엔진 중 타임리프를 사용할 때 아래 속성을 작성합니다. -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
 </head>
 <body>
 	<h2>커뮤니티 글목록</h2>
-	
+	<ul>
+		<li>[[${page}]]</li>
+		<li>[[${testDto}]]</li>
+	</ul>
 	<a href="/">INDEX</a>
 </body>
 </html>
