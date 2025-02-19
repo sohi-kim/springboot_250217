@@ -1,10 +1,12 @@
 package org.iclass.webEx.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@AllArgsConstructor     // 생성자에서 변수값 초기화
 @NoArgsConstructor
 @Getter
 @Setter
