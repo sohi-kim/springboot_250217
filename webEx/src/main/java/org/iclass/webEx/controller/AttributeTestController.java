@@ -7,6 +7,8 @@ import org.iclass.webEx.dto.TestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -51,5 +53,19 @@ public class AttributeTestController {
 		return "exercise";   // exercise.html
 	}
 	
+	@GetMapping("/board/write")
+	//http://localhost:8085/board/write?code=XYZ
+	// 					ㄴ 예시 : 파라미터 code의 값을 View 에게 전달
+	public String write(String code, Model model) {
+		log.info("GET 요청 write 파라미터 : {}",code);
+		model.addAttribute("code", code);
+		return "board/write";    // board/write.html 을 View 로 설정
+	}
+	
+	@PostMapping("/board/write")
+	public String save(String title, String content) {
+		log.info("POST 요청 파라미터 : {}, {}",title,content);
+		return "redirect:/";
+	}
 
 }
