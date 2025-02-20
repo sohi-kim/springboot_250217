@@ -8,6 +8,7 @@ import org.iclass.mybatisEx.mapper.UserAccountMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,13 +27,20 @@ public class UserAccountController {
 	}
 	
 	@PostMapping("login")
-	public String login(String userid, String password) {
+	public String login(String userid, String password,RedirectAttributes reAttr) {
 		Map<String, String> map = new HashMap<>();
 		map.put("userid", userid);
 		map.put("password", password);
 		UserAccount account = accountMapper.selectForLogin(map);
 		log.info("login 계정 정보 : {} ", account);
-		return "redirect:/";    //index.html : INDEX 제목만 작성하세요.
+		
+		if(account != null) {
+			return "redirect:/";
+		}else {  //로그인 실패
+			reAttr.addFlashAttribute("fail", "y");
+			return "redirect:login";
+		}
+		    //index.html : INDEX 제목만 작성하세요.
 	}
 
 }
