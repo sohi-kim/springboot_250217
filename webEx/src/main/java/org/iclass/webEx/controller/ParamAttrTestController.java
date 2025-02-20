@@ -17,14 +17,17 @@ public class ParamAttrTestController {
 	
 	@PostMapping("/board/search")
 	public String search(int page, String keyword , 
-			Model model) {   //Model 대신에 RedirectAttributes 했을 때 실행결과 비교
+			RedirectAttributes reAttr) {  
+		//Model 대신에 RedirectAttributes 사용하면 리다이렉트 할 때 애트리뷰트 저장할 수 있음.
+		//														ㄴ url 에 표시됨.
 		log.info("POST /board/search 파라미터 : {} , {}",page, keyword);
 		
-		// 리다이렉트 할때에도 애트리뷰트값을 줄 수 있을까?? (JSP에서는 불가능)
+		// 리다이렉트 할때에도 애트리뷰트값(+파라미터)을 줄 수 있을까?? (JSP에서는 불가능)
 //		model.addAttribute("page", pageDto.getPage());
-		model.addAttribute("page",page);
-		model.addAttribute("keyword", keyword);
+		reAttr.addAttribute("page",page);   // RedirectAttributes는 스프링 프레임웍에서만
+		reAttr.addAttribute("keyword", keyword);
 		return "redirect:/board/search";
+//		return "redirect:/board/search?page="+page + "&keyword=" + keyword;  //JSP방식
 	}
 	
 	@GetMapping("/board/search")
