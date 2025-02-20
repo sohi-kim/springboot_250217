@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +14,29 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class ParamAttrTestController {
 	
+	@GetMapping("/board/search")
+	public String searchlist2(@ModelAttribute("pageDto")  PageDto dto 
+//			, Model model
+			) {
+		log.info("GET /board/search 파라미터 : {} , {}",dto.getPage(), dto.getKeyword());
+		
+//		model.addAttribute("pageDto", dto);   // @ModelAttribute("pageDto") 사용할 수 있음
+		return "board/search";
+	}
+	
+	@PostMapping("/board/search")
+	public String search2(PageDto dto ,RedirectAttributes reAttr ) {
+		log.info("POST /board/search 파라미터 : {} , {}",dto.getPage(), dto.getKeyword());
+		
+//		reAttr.addAttribute("pagedto", dto);   // 파라미터 역할도 있어서 형식이 오류
+		reAttr.addAttribute("page",dto.getPage());   
+		reAttr.addAttribute("keyword", dto.getKeyword());
+		reAttr.addFlashAttribute("message", dto.getKeyword() + " 검색 완료했습니다.");
+		return "redirect:/board/search";
+	}
+	
+	
+	/*	
 	@PostMapping("/board/search")
 	public String search(int page, String keyword , 
 			RedirectAttributes reAttr) {  
@@ -39,7 +61,7 @@ public class ParamAttrTestController {
 		model.addAttribute("keyword", keyword);
 		return "board/search";
 	}
-	
+*/	
 	
 	@GetMapping("/board/list")
 	public String list(

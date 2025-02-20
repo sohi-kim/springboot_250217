@@ -12,6 +12,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PageDto {
-	private int page ; // = 1;
+	private int page =1;
 	private String keyword;
 }
