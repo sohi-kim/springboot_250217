@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <title>webEx</title>
 <link rel="stylesheet" href="/css/test.css"/>
+		<script type="text/javascript">
+			if('[[${message}]]'.length !=0)
+				alert('[[${message}]]')
+		</script>
 </head>
 <body>
 	<!-- URL 설계 -->
@@ -42,5 +46,11 @@
 		<li><a href="/board/list?page=4">방법(2)</a></li>
 		<li><a href="/board/list">방법(2) 기본값</a></li>
 	</ul>
+	<h2>파라미터와 redirect 애트리뷰트 연습</h2>
+	<a href="/board/search">/board/search</a>
 </body>
 </html>
+
+
+
+
