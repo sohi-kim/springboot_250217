@@ -18,6 +18,7 @@ public class SpringSessionTestController {
 	@GetMapping("setSessionAttribute")
 	public String setSession(Model model) {
 		model.addAttribute("userid", "소녀시대");
+		
 		return "session";
 	}
 	
@@ -31,9 +32,12 @@ public class SpringSessionTestController {
 	@PostMapping("logout")   // 방법 2
 	public String logout(SessionStatus sessionStatus) {
 		// model 애트리뷰트 중에서 session 스콥에 저장된 것들을 모두 삭제
-		sessionStatus.setComplete();
+		sessionStatus.setComplete();   // JSESSIONID 값은 유지
+		
 		return "redirect:/";
 	}
+	
+	
 
 }
 
