@@ -17,6 +17,12 @@ import lombok.extern.slf4j.Slf4j;
 public class UserAccountController {
 	private UserAccountService service;
 	
+	//레이아웃 샘플페이지
+	@GetMapping("/sample")
+	public String sample() {
+		return "sample";
+	}
+	
 	@GetMapping("/login")
 	public String login() {
 		return "login" ;   //login.html
