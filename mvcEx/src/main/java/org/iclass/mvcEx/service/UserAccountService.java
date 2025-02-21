@@ -22,5 +22,12 @@ public class UserAccountService {
 		map.put("password", password);
 		return mapper.selectForLogin(map);
 	}
+	
+	public int join(UserAccount dto) {
+		return mapper.insert(dto);
+	}
+	
+	
+	
 
 }

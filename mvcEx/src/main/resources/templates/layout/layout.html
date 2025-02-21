@@ -27,7 +27,7 @@
 	</ul>
 	<nav>
 		<ul id="nav" th:if="${session.account !=null }">
-				<li><span th:value="${session.account.username }"></span> 님 환영합니다.</li>
+				<li><span th:text="${session.account.username }"></span> 님 환영합니다.</li>
 				<li><a href="logout">로그아웃</a></li>
 		</ul>
 		<ul  id="nav" th:if="${session.account ==null }">		
