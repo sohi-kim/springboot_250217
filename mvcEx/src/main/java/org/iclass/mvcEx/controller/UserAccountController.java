@@ -38,5 +38,17 @@ public class UserAccountController {
 			return "redirect:login";
 		}
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session,RedirectAttributes reAttr) {
+		session.invalidate();
+		reAttr.addFlashAttribute("message", "로그 아웃 했습니다.");
+		return "redirect:/";    // context path 라고 부르고 화면은 index.html
+	}
+	
 
+	
+	
+	
+	
 }
