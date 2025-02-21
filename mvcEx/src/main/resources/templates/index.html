@@ -6,5 +6,8 @@
 </head>
 <body>
 	<h2>INDEX</h2>
+	<div th:if="${session.account != null}">
+		<span th:text="${session.account.username}"></span>
+	</div>
 </body>
 </html>
