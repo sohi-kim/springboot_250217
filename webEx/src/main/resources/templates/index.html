@@ -47,9 +47,26 @@
 		<li><a href="/board/list">방법(2) 기본값</a></li>
 	</ul>
 	<h2>파라미터와 redirect 애트리뷰트 연습</h2>
-	<a href="/board/search">/board/search</a>
+		<a href="/board/search">/board/search</a>
+	<h2>Session 연습</h2>
+		<a href="/getSession">/getSession</a>
+		<div th:if="${session.username !=null}"> <!-- 세션에서 가져오기  -->
+			방법 1 : <span th:text="${session.username}"></span>
+			<a href="logout">로그아웃1</a>
+		</div>
+		<div th:if="${session.userid !=null}">
+		    방법 2: <span th:text="${session.userid}"></span>
+		    <form action="logout" method="post">
+		    	<button>로그아웃2</button>
+		    </form>
+		</div>
 </body>
 </html>
+
+
+
+
+
 
 
 
