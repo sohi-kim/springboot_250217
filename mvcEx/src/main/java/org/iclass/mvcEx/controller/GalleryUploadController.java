@@ -70,9 +70,9 @@ public class GalleryUploadController {
 //		list.add(new Gallery("침실", "iclass", "침실1.jpg,침실2.jpg,침실3.jpg"));
 //		list.add(new Gallery("거실", "iclass", "거실1.jpg,거실2.jpg"));
 //		list.add(new Gallery("키친", "iclass", "키친1.jpg,키친2.jpg,키친3.jpg"));
-		// sevice 에서 조회한 결과를 리턴
 		
-		model.addAttribute("list", list);
+		// sevice 에서 조회한 결과를 리턴받아 애트리뷰트로 저장하기
+		model.addAttribute("list", service.list());
 		return "galleries";   // galleries.html
 	}
 	

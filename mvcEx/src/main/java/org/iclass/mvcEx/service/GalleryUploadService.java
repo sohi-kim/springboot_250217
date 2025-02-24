@@ -2,6 +2,7 @@ package org.iclass.mvcEx.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.iclass.mvcEx.dto.Gallery;
@@ -54,6 +55,7 @@ public class GalleryUploadService {
 	public void uploadMany(Gallery dto) {
 		// dto 중에서 List 타입으로 업로드 파일 가져오기 : uploadOne 을 list 크기만큼 반복
 		List<MultipartFile> list = dto.getFiles();
+		List<String> filenames = new ArrayList<>();
 		for (MultipartFile file : list) {
 //			MultipartFile file = dto.getFile();
 			try {
@@ -67,11 +69,13 @@ public class GalleryUploadService {
 									+ file.getOriginalFilename());
 					// 위의 File 객체를 실제로 저장하기
 					file.transferTo(uploadFile);
+					filenames.add(file.getOriginalFilename());
 				}
 			}catch (IOException e) {
 				log.debug("파일 업로드 예외 : {}", e.getMessage());
 			}
 			
+// 테이블에 insert 하기 : filenames 변수는 List. 하나의 String으로 만들기
 			
 		}
 		
