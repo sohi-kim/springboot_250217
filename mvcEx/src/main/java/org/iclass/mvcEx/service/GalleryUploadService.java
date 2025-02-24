@@ -5,18 +5,29 @@ import java.io.IOException;
 import java.util.List;
 
 import org.iclass.mvcEx.dto.Gallery;
+import org.iclass.mvcEx.mapper.GalleryMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@AllArgsConstructor
 @Slf4j
 @Service
 public class GalleryUploadService {
+	// db mapper 의존관계 필요함.
+	private GalleryMapper mapper;      // GalleryMapper 타입 객체는 자동 주입
+	
 	//상수
 	private final static String UPLOAD_PATH = "c:\\upload";
+
 	
-	// db mapper 의존관계 필요함.
+	public List<Gallery> list(){
+		
+		return mapper.selectAll();
+	}
+	
 	
 	// 1개의 파일을 업로드 하는 메소드
 	public void uploadOne(Gallery dto) {
@@ -32,7 +43,7 @@ public class GalleryUploadService {
 				File uploadFile = new File(UPLOAD_PATH + "\\"
 								+ file.getOriginalFilename());
 				// 위의 File 객체를 실제로 저장하기
-				// 전송 받은 MultipartFile 타입 파일 내용을 File 타입 객체로 전송하기
+				// 전송 받MultipartFile 타입 파일 내용을 File 타입 객체로 전송하기
 				file.transferTo(uploadFile);
 			}
 		}catch (IOException e) {
@@ -42,7 +53,7 @@ public class GalleryUploadService {
 
 	public void uploadMany(Gallery dto) {
 		// dto 중에서 List 타입으로 업로드 파일 가져오기 : uploadOne 을 list 크기만큼 반복
-		MultipartFile[] list = dto.getFiles();
+		List<MultipartFile> list = dto.getFiles();
 		for (MultipartFile file : list) {
 //			MultipartFile file = dto.getFile();
 			try {
