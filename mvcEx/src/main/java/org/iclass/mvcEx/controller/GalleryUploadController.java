@@ -51,7 +51,9 @@ public class GalleryUploadController {
 	
 	@PostMapping("gallery")
 	public String gallery(Gallery dto) {
-		service.uploadOne(dto);
+		log.info("POST gallery : {}",dto);
+//		service.uploadOne(dto);
+		service.uploadMany(dto);    // 1개 이상의 파일을 업로드
 		return "redirect:gallery";
 	}
 }
