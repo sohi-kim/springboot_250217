@@ -21,7 +21,7 @@ public class CommunityController {
 	@GetMapping("/community/list")
 	public String list(@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		List<CommunityDTO> list = service.getPageList(1);
+		List<CommunityDTO> list = service.getPageList(page);
 		model.addAttribute("list", list);
 		return "community/list";		// community 폴더안에 list.html
 	}

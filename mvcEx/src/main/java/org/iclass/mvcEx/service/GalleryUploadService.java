@@ -30,7 +30,7 @@ public class GalleryUploadService {
 	}
 	
 	
-	// 1개의 파일을 업로드 하는 메소드
+	// 1개의 파일을 업로드 하는 메소드 : 첫번째 테스트용(db 저장안됨)
 	public void uploadOne(Gallery dto) {
 		// 서버가 dto 중에 업로드파일(file 변수)을 지정된 폴더에 저장
 		MultipartFile file = dto.getFile();
