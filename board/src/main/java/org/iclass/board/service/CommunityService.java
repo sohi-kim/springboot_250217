@@ -44,6 +44,7 @@ public class CommunityService {
 		int totalPages = (int)Math.ceil(temp);		// 반올림해서 정수로  29.7을 정수로 반올림 30.0
 		
 		// 현재 페이지를 기준으로 페이지목록(10개 페이지 지정) 시작번호
+		// currentPage 가 1~10  , 11~20 , 21~30 은 각각 모두 같은 startPage 가 계산됩니다.
 		int startPage = (currentPage-1)/10*10+1;    //21
 		int endPage = startPage+(10-1);		//30
 		endPage = Math.min(totalPages, endPage);  //endPage 는 totalPages 보다 크면 안됩니다.
