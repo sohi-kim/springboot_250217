@@ -11,5 +11,6 @@ public interface CommunityMapper {
 	  int getAllCount();
 	  List<CommunityDTO> selectPageList(Map<String , Integer> map);
 	  int insert(CommunityDTO dto);
-	  CommunityDTO selectByIdx(int idx);
+	  CommunityDTO selectByIdx(long idx);
+	  int setReadCount(long idx);
 }

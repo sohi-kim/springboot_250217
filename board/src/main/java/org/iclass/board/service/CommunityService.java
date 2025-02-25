@@ -60,7 +60,8 @@ public class CommunityService {
 		return responseDTO;
 	}
 
-	public CommunityDTO read(int idx) {
+	public CommunityDTO read(long idx) {
+		mapper.setReadCount(idx);
 		return mapper.selectByIdx(idx);
 	}
 	

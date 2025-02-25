@@ -48,7 +48,19 @@
                             	[[${dto.commentCount}]]</span>
                         </td>
                         <td>[[${dto.writer}]]</td>
-                        <td>[[${dto.createdAt}]]</td>
+                        <!-- <td>[[${dto.createdAt}]]</td> -->
+                        <td>
+                        <!-- 작성날짜를 yyyy-MM-dd 문자열로 변환해서 저장. -->
+                        <th:block th:with="temp=${#dates.format(dto.createdAt,'yyyy-MM-dd')}">
+							<!-- 오늘 이전에 작성한 글은 날짜로 표시. 문자열 비교 -->
+							<span th:if="${#strings.equals(temp,today)}">
+									[[${#dates.format(dto.createdAt,'HH:mm')}]]	
+							</span>
+							<span th:unless="${#strings.equals(temp,today)}"> <!-- 조건식이 거짓일 때  -->
+									[[${temp}]]		
+							</span>	
+						</th:block>	
+                        </td>
                         <td>[[${dto.readCount}]]</td>
                     </tr>
                     </tbody>

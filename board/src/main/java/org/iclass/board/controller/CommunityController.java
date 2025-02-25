@@ -1,5 +1,7 @@
 package org.iclass.board.controller;
 
+import java.time.LocalDate;
+
 import org.iclass.board.dto.CommunityDTO;
 import org.iclass.board.dto.PageResponseDTO;
 import org.iclass.board.service.CommunityService;
@@ -26,6 +28,8 @@ public class CommunityController {
 		PageResponseDTO pageList = service.getPageList(page);
 		model.addAttribute("pageList", pageList);
 		model.addAttribute("page", page);	// 검색기능 구현하면 dto 로 작성
+		log.info("오늘 날짜 : {}",LocalDate.now() );
+		model.addAttribute("today", LocalDate.now());
 		return "community/list";		// community 폴더안에 list.html
 	}
 	
