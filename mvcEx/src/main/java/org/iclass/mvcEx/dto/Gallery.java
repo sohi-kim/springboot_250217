@@ -18,11 +18,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Gallery {
+	private int seq;
 	private String title;
 	private String writer;
-	// 1개의 업로드 파일을 저장할 변수
+	// 1개의 업로드 파일을 저장할 변수 (db저장 안함)
 	private MultipartFile file;
-	// 여러개의 업로드 파일을 저장할 변수
+	// 여러개의 업로드 파일을 저장할 변수 (db저장 안함)
 	private List<MultipartFile> files;
 
 	// gallery.html 의 input 요소 외에 db에 파일명을 저장하기 위한 변수

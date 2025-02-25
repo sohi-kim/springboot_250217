@@ -77,7 +77,7 @@ public class GalleryUploadController {
 	}
 	
 	@PostMapping("galleries")
-	public String galleries(Gallery dto) {
+	public String galleries(Gallery dto) { 
 		service.uploadMany(dto);
 		return "redirect:galleries";
 	}
