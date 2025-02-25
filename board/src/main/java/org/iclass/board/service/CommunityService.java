@@ -61,7 +61,6 @@ public class CommunityService {
 	}
 
 	public CommunityDTO read(int idx) {
-		// TODO Auto-generated method stub
 		return mapper.selectByIdx(idx);
 	}
 	

@@ -35,18 +35,19 @@ public class CommunityController {
 		log.info("idx : {} ,  page : {}",idx,page);
 		// sql : idx 값으로 하나의 행 조회, mapper, service
 		model.addAttribute("dto", service.read(idx));
+		model.addAttribute("page", page);
 		return "community/read";
 	}
 	
 	// 글 쓰기
 	@GetMapping("/community/write")
 	public String write() {
-		
 		return "community/write";
 	}
 	
 	@PostMapping("/community/write")
 	public String write(CommunityDTO dto) {
+		log.info("form 입력값 : {}",dto);
 		service.write(dto);
 		return "redirect:list";
 	}
