@@ -5,7 +5,7 @@
 <mapper namespace="org.iclass.mvcEx.mapper.GalleryMapper">
    <insert id="insert" parameterType="Gallery">
       INSERT INTO tbl_gallery(seq, title, writer, filenames)
-      VALUES (gallery_seq.nextval, #{title}, #{writer}, #{filenames})
+      VALUES (gallery_seq.nextval, #{title}, #{writer}, #{fileNames})
       <selectKey keyProperty="seq" resultType="int" order="AFTER">
       		select gallery_seq.currval
       		from dual

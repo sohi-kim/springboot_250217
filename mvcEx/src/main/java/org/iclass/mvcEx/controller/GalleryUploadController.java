@@ -78,7 +78,8 @@ public class GalleryUploadController {
 	
 	@PostMapping("galleries")
 	public String galleries(Gallery dto) { 
-		service.uploadMany(dto);
+		int seq = service.uploadMany(dto);
+		log.info("추가된 행의 seq : {}",seq);
 		return "redirect:galleries";
 	}
 	
