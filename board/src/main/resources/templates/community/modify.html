@@ -19,6 +19,7 @@
 	            <div class="card-body">
 	                <form action="modify" method="post">
 	                	<input type="hidden" th:value="${dto.idx}" name="idx">
+	                	<input type="hidden" th:value="${page}" name="page">
 	                    <div class="input-group mb-3">
 	                        <span class="input-group-text col-2">작성자</span>
 	                        <label class="col-4">
@@ -51,7 +52,7 @@
 	                        <div class="float-end">
 	                            <button type="submit" class="btn btn-primary">제출</button>
 	                            <button type="reset" class="btn btn-secondary">다시쓰기</button>
-	                            <a th:href="@{list}">
+	                            <a th:href="|@{list?page=}${page}|">
 	                                <button type="button" class="btn btn-info">목록</button>
 	                            </a>
 	                        </div>

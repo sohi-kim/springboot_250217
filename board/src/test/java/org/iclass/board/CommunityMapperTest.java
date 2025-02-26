@@ -1,6 +1,11 @@
 package org.iclass.board;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.iclass.board.dto.CommunityDTO;
 import org.iclass.board.mapper.CommunityMapper;
@@ -11,12 +16,36 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SpringBootTest
 class CommunityMapperTest {
 	
 	@Autowired		// 빈 저장소에서 자동주입(필드 주입)
 	private CommunityMapper mapper;
 	
+	@Test
+	@DisplayName("4페이지의 글 목록을 가져오기")
+	void selectAll() {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("startNo",31); map.put("endNo",40);
+		List<CommunityDTO> list = mapper.selectPageList(map);
+		log.info("4페이지 리스트 : {}",list);
+	}
+	
+	
+	@Disabled
+	@Test
+	@DisplayName("게시판 테이블의 399번 행 삭제")
+	void delete() {
+		int result = mapper.delete(399);
+		assertEquals(1, result);		// 클래스 이름 Assertions 생략. import 확인
+		CommunityDTO dto = mapper.selectByIdx(399);
+		assertNull(dto);
+	}
+	
+	@Disabled
 	@Test
 	@DisplayName("게시판 테이블의 399번 데이터 수정")
 	void update() {
@@ -29,9 +58,7 @@ class CommunityMapperTest {
 		CommunityDTO resDto = mapper.selectByIdx(dto.getIdx());
 		Assertions.assertEquals(1, result);
 		Assertions.assertEquals(dto.getContent(), resDto.getContent());
-		
 	}
-	
 	
 	@Test   // 테스트할 메소드 표시
 	@DisplayName("게시판 테이블에 insert 확인")

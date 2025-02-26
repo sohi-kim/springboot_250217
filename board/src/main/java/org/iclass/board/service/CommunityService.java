@@ -70,8 +70,9 @@ public class CommunityService {
 		mapper.insert(dto);
 	}
 
-	
-	
-	
+	// 글 수정
+	public void save(CommunityDTO dto) {
+		mapper.update(dto);
+	}
 
 }

@@ -45,8 +45,11 @@ public class CommunityController {
 	
 	//수정할 내용 저장
 	@PostMapping("/community/modify")
-	public String modify(RedirectAttributes reAttr) {
-		
+	public String modify(CommunityDTO dto,int page , RedirectAttributes reAttr) {
+		log.info("modify dto : {}", dto);
+		service.save(dto);
+		reAttr.addAttribute("idx", dto.getIdx());
+		reAttr.addAttribute("page", page);
 		return "redirect:/community/read";
 	}
 	
