@@ -13,4 +13,6 @@ public interface CommunityMapper {
 	  int insert(CommunityDTO dto);
 	  CommunityDTO selectByIdx(long idx);
 	  int setReadCount(long idx);
+	  int update(CommunityDTO dto);
+	  int delete(long idx);
 }

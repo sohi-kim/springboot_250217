@@ -31,4 +31,15 @@
 		INSERT INTO community (idx,writer,title,content)
 		VALUES (community_idx_seq.nextval,#{writer},#{title},#{content})
 	</insert>
+	
+	<update id="update" parameterType="CommunityDTO">
+		UPDATE COMMUNITY 
+		SET CONTENT = #{content} , title = #{title}
+		WHERE idx=#{idx}
+	</update>
+	
+	<delete id="delete" parameterType="long">
+		DELETE FROM COMMUNITY WHERE idx=#{idx}
+	</delete>
+	
 </mapper>
