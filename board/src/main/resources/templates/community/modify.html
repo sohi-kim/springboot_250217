@@ -14,49 +14,45 @@
 	    <div class="col-8">
 	        <div class="card">
 	            <div class="card-header">
-	                Welcome! Community - 글 읽기
+	                Welcome! Community - 글 수정
 	            </div>
 	            <div class="card-body">
-	                <form action="/community/write" method="post">
+	                <form action="modify" method="post">
+	                	<input type="hidden" th:value="${dto.idx}" name="idx">
 	                    <div class="input-group mb-3">
 	                        <span class="input-group-text col-2">작성자</span>
 	                        <label class="col-4">
 	                            <input name="writer" class="form-control" 
-	                            		th:value="${dto.writer}" disabled>
+	                            		th:value="${dto.writer}" readonly>
+	                        </label>
+	                    </div>
+	                    <div class="input-group">
+	                        <span class="input-group-text col-2">작성 날짜</span>
+	                        <label class="col-4">
+	                            <input  class="form-control" 
+	                            		th:value="${#dates.format(dto.createdAt,'yyyy-MM-dd a hh:mm')}" disabled>
 	                        </label>
 	                    </div>
 	                    <div class="input-group">
 	                        <span class="input-group-text col-2">제목</span>
 	                        <label class="col-10">
-	                            <input name="title" class="form-control" th:value="${dto.title}" 
-	                              placeholder="제목을 입력하세요." >
+	                            <input name="title" class="form-control" readonly
+	                          th:value="${#strings.startsWith(dto.title, '(수정)') ? dto.title : '(수정)' + dto.title }" >
 	                        </label>  
 	                    </div>
-	                    <div class="input-group">
-	                        <span class="input-group-text col-2">작성날짜</span>
-	                        <label class="col-10">
-	                            <input name="title" class="form-control" 
-	                            	th:value="${#dates.format(dto.createdAt,'yyyy-MM-dd HH:mm')}" 
-	                               placeholder="제목을 입력하세요." >
-	                        </label>  
-	                    </div>
-	                    <div class="input-group">
+	                        <div class="input-group">
 	                        <span class="input-group-text col-2">내용</span>
 	                        <label class="col-10">
-	                            <textarea name="content" class="form-control" rows="15" 
-	                            style="resize: none;" disabled>[[${dto.content}]]</textarea>
+	                            <textarea name="content" class="form-control" rows="15" style="resize: none;" 
+	                            	placeholder="내용을 입력하세요.">[[${dto.content}]]</textarea>
 	                        </label>
 	                    </div>
 	                    <div class="my-4">
 	                        <div class="float-end">
 	                            <button type="submit" class="btn btn-primary">제출</button>
 	                            <button type="reset" class="btn btn-secondary">다시쓰기</button>
-	                            <a th:href="|@{list?page=}${page}|">
+	                            <a th:href="@{list}">
 	                                <button type="button" class="btn btn-info">목록</button>
-	                            </a>
-	                            <!-- 글목록 참고 :  |@{read?idx=}${dto.idx}&page=${page}| -->
-	                            <a th:href="|@{modify?page=}${page}&idx=${dto.idx}|">
-	                                <button type="button" class="btn btn-info">수정</button>
 	                            </a>
 	                        </div>
 	                    </div>
