@@ -74,5 +74,9 @@ public class CommunityService {
 	public void save(CommunityDTO dto) {
 		mapper.update(dto);
 	}
+	//글 삭제
+	public void remove(int idx) {
+		mapper.delete(idx);
+	}
 
 }

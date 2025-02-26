@@ -45,22 +45,30 @@ public class CommunityController {
 	
 	//수정할 내용 저장
 	@PostMapping("/community/modify")
-	public String modify(CommunityDTO dto,int page , RedirectAttributes reAttr) {
+	public String modify(CommunityDTO dto, int page , RedirectAttributes reAttr) {
 		log.info("modify dto : {}", dto);
 		service.save(dto);
 		reAttr.addAttribute("idx", dto.getIdx());
 		reAttr.addAttribute("page", page);
 		return "redirect:/community/read";
 	}
-	
+	// 글 삭제
+	@PostMapping("/community/remove")
+	public String remove(int idx, int page,RedirectAttributes reAttr) {
+		service.remove(idx);
+		reAttr.addAttribute("page", page);
+		return "redirect:list";   
+	}
 	
 	// 글 읽기
 	@GetMapping("/community/read")
 	public String read(int idx, int page, Model model) {
+							//       ㄴ list.html 화면에서 글제목 링크에 page 파라미터 받아오기
 		log.info("idx : {} ,  page : {}",idx,page);
 		// sql : idx 값으로 하나의 행 조회, mapper, service
 		model.addAttribute("dto", service.read(idx,true));
-		model.addAttribute("page", page);
+		model.addAttribute("page", page);   
+							//		ㄴ read.html 화면 목록/수정/삭제 버튼 링크에 page 파라미터 값으로 사용
 		return "community/read";
 	}
 	

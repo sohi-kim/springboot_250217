@@ -17,7 +17,6 @@
 	                Welcome! Community - 글 읽기
 	            </div>
 	            <div class="card-body">
-	                <form action="/community/write" method="post">
 	                    <div class="input-group mb-3">
 	                        <span class="input-group-text col-2">작성자</span>
 	                        <label class="col-4">
@@ -58,9 +57,24 @@
 	                            <a th:href="|@{modify?page=}${page}&idx=${dto.idx}|">
 	                                <button type="button" class="btn btn-info">수정</button>
 	                            </a>
+	                              <!-- <a th:href="|@{remove?page=}${page}&idx=${dto.idx}|">
+	                                <button type="button" class="btn btn-info">삭제</button>
+	                            </a> -->
+	                            <!-- button 스타일 때문에 form 밖으로 옮김-->
+	                            <button type="button" class="btn btn-info" onclick="check()">삭제</button>
+	                            <form action="remove" method="post">
+	                            	<input type="hidden" name="idx" th:value="${dto.idx}"> 
+	                            	<input type="hidden" name="page" th:value="${page}"> 
+	                            </form>
+	                            <script type="text/javascript">
+	                            	function check() {
+	                            		if(confirm('글을 삭제하시겠습니까?')){
+	                            			document.forms[0].submit()
+	                            		}
+	                            	}
+	                            </script>
 	                        </div>
 	                    </div>
-	                </form>
 	            </div>
 	        </div>
 	    </div>
