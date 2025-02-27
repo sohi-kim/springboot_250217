@@ -1,4 +1,4 @@
-package org.iclass.rest.test;
+package org.iclass.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
