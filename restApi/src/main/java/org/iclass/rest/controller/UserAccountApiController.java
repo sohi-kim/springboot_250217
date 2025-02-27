@@ -29,6 +29,7 @@ public class UserAccountApiController {
 			int result = service.regist(dto);
 			return ResponseEntity.ok().body(result);
 		}catch (Exception e) {
+			log.info("insert sql 예외 : {}",e.getMessage());
 			return ResponseEntity.badRequest().build();
 		}
 		
