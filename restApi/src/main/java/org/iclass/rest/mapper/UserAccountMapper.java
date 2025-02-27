@@ -11,7 +11,7 @@ public interface UserAccountMapper {
 		UserAccount selectForLogin(Map<String,String> map);
 		int selectByEmail(String email);   //email 중복검사
 		int selectByUserid(String userid);   //userid 중복검사
-		int updateEmail(Map<String,String> map);	// email 수정
+		int updateEmail(UserAccount dto);	// email 수정
 		int delete(String userid);
 		UserAccount selectByPk(String userid);
 }

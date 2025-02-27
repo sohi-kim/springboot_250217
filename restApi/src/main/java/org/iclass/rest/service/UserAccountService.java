@@ -20,11 +20,9 @@ public class UserAccountService {
 		return mapper.insert(dto);
 	}
 	// 사용자 이메일 수정
-	public int updateEmail(String email,String userid) {
-		Map<String, String> map= new HashMap<>();
-		map.put("userid", userid);
-		map.put("email", email);
-		return mapper.updateEmail(map);
+	public int updateEmail(UserAccount dto) {
+		
+		return mapper.updateEmail(dto);
 	}
 	
 	// 사용자 삭제
