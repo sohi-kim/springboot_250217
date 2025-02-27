@@ -52,7 +52,7 @@ public class SampleRestController {
 	@PutMapping("/samples")
 	public ResponseEntity<?> update(@RequestBody SampleDTO dto)	{
 		log.info("update 할 dto :  {} ,{}, {}", 
-				dto.getUserid(),dto.getUsername(),dto.getUserid());
+				dto.getUserid(),dto.getUsername(),dto.getPassword());
 		//update 역할
 		list.add(0,dto);		//0번 인덱스 값을 수정
 		
@@ -70,7 +70,7 @@ public class SampleRestController {
 	@PostMapping("/samples")
 	public ResponseEntity<?> post(@RequestBody SampleDTO dto){
 		log.info("insert 할 dto :  {} ,{}, {}", 
-				dto.getUserid(),dto.getUsername(),dto.getUserid());
+				dto.getUserid(),dto.getUsername(),dto.getPassword());
 		try {
 			//insert 역할
 			list.add(dto);
