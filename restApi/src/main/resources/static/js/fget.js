@@ -3,7 +3,40 @@
  */
 document.getElementById('btnGetList').addEventListener('click',getList)
 document.getElementById('btnGetOne').addEventListener('click',getOne)
+document.getElementById('userid').addEventListener('keyup',checkUserid)
 
+let isCheck = false
+function checkUserid(){
+	const message = document.getElementById('message')
+	const userid = document.getElementById('userid').value
+	if(userid.length < 4) {
+		message.innerHTML = '4글자 이상입니다.'
+		message.className='red'
+		isCheck=false
+		return
+	}	
+	const url = `/userid/${userid}`
+	fetch(url)
+			.then(response => {     
+				return response.json()	
+			})
+			.then(data => {     
+				// data 는 response.json() 의 결과
+				console.log("data : ", data)
+				if(data === true) {
+					message.innerHTML ='사용할 수 있습니다.'
+					message.className = 'green'
+					isCheck = true
+				}else {
+					message.innerHTML ='이미 존재하는 아이디 입니다.'
+					message.className = 'red'
+					isCheck= false
+				}
+				
+			})
+			.catch(error => console.error("에러 : ", error) )
+		
+}
 
 function getOne(){
 	const userid = document.getElementById('search').value
