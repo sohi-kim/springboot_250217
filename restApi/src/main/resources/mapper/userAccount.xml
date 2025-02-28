@@ -19,6 +19,10 @@
 				 WHERE userid=#{userid} and password=#{password}
 	</select>
 	<!-- api 컨트롤러 연습 추가 -->
+	<select id="selectAll" resultType="UserAccount">
+		SELECT * FROM tbl_user_account
+		ORDER BY userid	
+	</select>
 	<select id="selectByEmail" 
 			parameterType="String" resultType="int">
 		select count(*) from tbl_user_account

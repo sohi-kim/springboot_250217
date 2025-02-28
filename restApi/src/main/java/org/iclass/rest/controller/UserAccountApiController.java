@@ -1,5 +1,7 @@
 package org.iclass.rest.controller;
 
+import java.util.List;
+
 import org.iclass.rest.dto.UserAccount;
 import org.iclass.rest.service.UserAccountService;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserAccountApiController {
 	private final UserAccountService service;
+	
+	@GetMapping("/account")
+	public ResponseEntity<List<UserAccount>> getList(){
+		return ResponseEntity.ok().body(service.getList());
+	}
 	
 	@GetMapping("/account/{userid}")
 	public ResponseEntity<UserAccount> getOne(@PathVariable String userid){

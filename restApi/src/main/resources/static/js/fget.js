@@ -46,6 +46,31 @@ function getList(){
 		})
 		.then(data => {
 			console.log("data : ", data)
+//			document.getElementById('result').innerHTML = JSON.stringify(data)
+			rowsPrint(data)
 		})
 		.catch(error => console.error("에러 : ", error) )
 }
+
+
+function rowsPrint(list){
+	const result = document.getElementById('result')
+	result.innerHTML =''
+	
+	list.forEach((item) => {
+		const box = document.createElement("div")
+		box.className = 'row'
+		const result = `
+					<input value="${item.userid}">
+					<input value="${item.username}">
+					<input type="password" value="${item.password}">
+					<input type="date" value="${item.birth}">
+					<input value="${item.gender}">
+					<input type="email" value="${item.email}">
+					`
+		box.innerHTML = result
+		result.appendChild(box)   // result 요소의 자식 요소로 box 요소 추가 
+	})
+}
+
+

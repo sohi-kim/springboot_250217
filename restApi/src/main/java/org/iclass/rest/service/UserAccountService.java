@@ -1,8 +1,10 @@
 package org.iclass.rest.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.User;
 import org.iclass.rest.dto.UserAccount;
 import org.iclass.rest.mapper.UserAccountMapper;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UserAccountService {
 	private final UserAccountMapper mapper;
+	
+	// 모든 사용자 조회
+	public List<UserAccount> getList(){
+		return mapper.selectAll();
+	}
 	
 	// 사용자 등록
 	public int regist(UserAccount dto) {

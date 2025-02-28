@@ -7,11 +7,11 @@ function sendPost() {
 	const url = '/account'
 	// 저장할 데이터를 객체로 만들기
 	const obj = {
-		userid : 'gilsoon',
-		username : '홍길순',
-		birth : '2000-01-01',
+		userid : 'gilsoon2',
+		username : '이길순',
+		birth : '2010-01-01',
 		gender : '여성',
-		email : 'sooni@naver.com',
+		email : 'soonii@naver.com',
 		password : '9999'
 	}
 	
