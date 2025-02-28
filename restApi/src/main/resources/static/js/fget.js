@@ -54,12 +54,11 @@ function getList(){
 
 
 function rowsPrint(list){
-	const result = document.getElementById('result')
-	result.innerHTML =''
-	
+	document.getElementById('result').innerHTML =''
+
 	list.forEach((item) => {
-		const box = document.createElement("div")
-		box.className = 'row'
+		const box = document.createElement("div")  // 새로운 요소 만들기
+		box.className = 'row'   // 위에서 만든 div 태그의 class 속성값
 		const result = `
 					<input value="${item.userid}">
 					<input value="${item.username}">
@@ -68,8 +67,8 @@ function rowsPrint(list){
 					<input value="${item.gender}">
 					<input type="email" value="${item.email}">
 					`
-		box.innerHTML = result
-		result.appendChild(box)   // result 요소의 자식 요소로 box 요소 추가 
+		box.innerHTML = result   // 새로만든 요소의 컨텐츠를 result 문자열(요소)로 설정 
+document.getElementById('result').appendChild(box)   // result 요소의 자식 요소로 box 요소 추가
 	})
 }
 
