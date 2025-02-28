@@ -26,6 +26,9 @@ function sendPost() {
 	fetch(url,options)
 		.then(response => {
 			console.log("response : ", response)
+			if(response.status === 400){
+				alert('userid 와 email 은 유일한 값으로 합니다.(무결성 위반)')
+			}
 			return response.json()
 		})
 		.then(data => {
