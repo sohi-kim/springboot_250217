@@ -26,12 +26,12 @@ function dataPrint(data){
 //	document.getElementById('userid').value=data.userid
 	
 	const result = `
-			<input id="userid" value="${data.userid}">
-			<input id="username" value="${data.username}">
-			<input id="password" type="password" value="${data.password}">
-			<input id="birth" type="date" value="${data.birth}">
-			<input id="gender" value="${data.gender}">
-			<input id="email" type="email" value="${data.email}">
+			<input value="${data.userid}">
+			<input value="${data.username}">
+			<input type="password" value="${data.password}">
+			<input type="date" value="${data.birth}">
+			<input value="${data.gender}">
+			<input type="email" value="${data.email}">
 			`
 	document.getElementById('result').innerHTML=result		
 }
