@@ -4,6 +4,7 @@
 document.getElementById('btnGetList').addEventListener('click',getList)
 document.getElementById('btnGetOne').addEventListener('click',getOne)
 document.getElementById('userid').addEventListener('keyup',checkUserid)
+document.getElementById('btnCheckEmail').addEventListener('click',checkEmail)
 
 let isCheck = false
 function checkUserid(){
@@ -36,6 +37,33 @@ function checkUserid(){
 			})
 			.catch(error => console.error("에러 : ", error) )
 		
+}
+
+let isCheck2=false
+function checkEmail(){
+	const email = document.getElementById('email').value
+	if(email.length === 0) {
+		alert('이메일 주소를 입력하세요.')
+		isCheck2=false
+		return
+	}	
+	const url = `/email/${email}`
+	fetch(url)
+			.then(response => {     
+				return response.json()	
+			})
+			.then(data => {     
+				// data 는 response.json() 의 결과
+				console.log("data : ", data)
+				if(data) {
+					alert('사용 가능한 이메일 주소입니다.')
+					isCheck2=true					
+				}else {
+					alert('이미 사용 중인 이메일 주소입니다.')
+					isCheck2=false
+				}
+			})
+			.catch(error => console.error("에러 : ", error) )
 }
 
 function getOne(){
