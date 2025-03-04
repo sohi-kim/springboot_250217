@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.iclass.board.dto.CommunityCommentDTO;
 import org.iclass.board.mapper.CommunityCommentsMapper;
 import org.iclass.board.service.CommunityCommentService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ class CommunityCommentServiceTest {
 		log.info("520번 댓글 갯수 : {}", service.commentList(520).size());
 	}
 	
+	@Disabled
 	@Test
 	@DisplayName("510번 글의 댓글 추가하기")
 	void regist() {
@@ -41,6 +43,16 @@ class CommunityCommentServiceTest {
 		log.info("변경된 댓글 갯수 : {}",mapper.selectCommentCount(510));
 		assertEquals(1, result);
 	}
+	
+	//idx 26번 삭제
+	@Test
+	@DisplayName("메인글 510번의 댓글 26번 삭제하기")
+	void remove() {
+		int result = service.commentRemove(26,510);
+		log.info("변경된 댓글 갯수 : {}",mapper.selectCommentCount(510));
+		assertEquals(1, result);
+	}
+	
 	
 }
 
