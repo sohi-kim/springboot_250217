@@ -9,13 +9,11 @@
 		글목록 ,startPage,endPage -->
 	<div th:text="${list}"></div>
 	<ul>
-	<!-- 타임리프 #numbers 객체로 1부터 10까지의 숫자 배열 생성 
-		 1은 startPage, 10은 endPage
-	 -->
 		<li th:each="i : ${#numbers.sequence(1,10)}">
 			<a th:href="|@{list?page=}${i}|">[[${i}]]</a>
 		</li>
-	
 	</ul>
+		<!-- 타임리프 numbers 객체로  1부터 10까지의 숫자 배열 생성 
+		 	1은 startPage, 10은 endPage -->
 </body>
 </html>
