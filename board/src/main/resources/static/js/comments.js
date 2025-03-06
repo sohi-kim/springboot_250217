@@ -32,10 +32,11 @@ function printReplyList(list) {   //댓글 목록을 ul 태그 안에 넣어 주
                <span class="col-6">${dto.regDate}</span>
                `
         // 로그인 구현하면 로그인 사용자와 글 작성자가 같을 때만 보이기
-        str+=`<span class="col-1">
-                   <i class="bi bi-trash" data-num="${dto.idx}"></i>
-                </span>`
-        
+		if(dto.writer === username) {
+	        str+=`<span class="col-1">
+	                   <i class="bi bi-trash" data-num="${dto.idx}"></i>
+	                </span>`
+        }
         str+=  `</li>
                <li class="list-group-item d-flex">
                  <textarea class="form-control myfs-9" disabled>${dto.content}</textarea>

@@ -62,19 +62,22 @@
 	                            <a th:href="|@{list?page=}${page}|">
 	                                <button type="button" class="btn btn-info">목록</button>
 	                            </a>
-	                            <!-- 글목록 참고 :  |@{read?idx=}${dto.idx}&page=${page}| -->
-	                            <a th:href="|@{modify?page=}${page}&idx=${dto.idx}|">
-	                                <button type="button" class="btn btn-info">수정</button>
-	                            </a>
-	                              <!-- <a th:href="|@{remove?page=}${page}&idx=${dto.idx}|">
-	                                <button type="button" class="btn btn-info">삭제</button>
-	                            </a> -->
-	                            <!-- button 스타일 때문에 form 밖으로 옮김-->
-	                            <button type="button" class="btn btn-info" onclick="check()">삭제</button>
-	                            <form action="remove" method="post">
-	                            	<input type="hidden" name="idx" th:value="${dto.idx}"> 
-	                            	<input type="hidden" name="page" th:value="${page}"> 
-	                            </form>
+	                            <!--  글 작성자와 로그인 사용자가 같을 때만 보이도록 합니다.-->
+	                            <th:block th:if="${dto.writer == session.username}">
+		                            <!-- 글목록 참고 :  |@{read?idx=}${dto.idx}&page=${page}| -->
+		                            <a th:href="|@{modify?page=}${page}&idx=${dto.idx}|">
+		                                <button type="button" class="btn btn-info">수정</button>
+		                            </a>
+		                              <!-- <a th:href="|@{remove?page=}${page}&idx=${dto.idx}|">
+		                                <button type="button" class="btn btn-info">삭제</button>
+		                            </a> -->
+		                            <!-- button 스타일 때문에 form 밖으로 옮김-->
+		                            <button type="button" class="btn btn-info" onclick="check()">삭제</button>
+		                            <form action="remove" method="post">
+		                            	<input type="hidden" name="idx" th:value="${dto.idx}"> 
+		                            	<input type="hidden" name="page" th:value="${page}"> 
+		                            </form>
+	                            </th:block>
 	                            <script type="text/javascript">
 	                            	function check() {
 	                            		if(confirm('글을 삭제하시겠습니까?')){
@@ -128,6 +131,9 @@
 	    </div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		const username = '[[${session.username}]]'
+	</script>
 	<script type="text/javascript" src="/js/comments.js"></script>
 </body>
 </html>
