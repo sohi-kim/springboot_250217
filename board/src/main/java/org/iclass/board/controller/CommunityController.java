@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,7 +75,13 @@ public class CommunityController {
 	
 	// 글 쓰기
 	@GetMapping("/community/write")
-	public String write() {
+	public String write(HttpSession session) throws IllegalAccessException {
+		String username = (String)session.getAttribute("username");
+		log.info("username : {}",username);
+		if(username == null) {
+			//로그인 안했으면 예외 발생
+			throw new IllegalAccessException("잘못된 접근입니다.");
+		}
 		return "community/write";
 	}
 	
