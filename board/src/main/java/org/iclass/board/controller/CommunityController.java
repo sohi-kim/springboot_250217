@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import org.iclass.board.dto.CommunityDTO;
 import org.iclass.board.dto.PageResponseDTO;
-import org.iclass.board.dto.UserAccount;
 import org.iclass.board.service.CommunityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

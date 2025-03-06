@@ -1,6 +1,9 @@
 /**
  * 댓글 기능 api 실행
  */
+// 세션 활용
+sessionStorage.setItem('sessionId',sessionId)
+sessionStorage.setItem('username' , username)
 
 const replyUl = document.getElementById("replyList")
 getReplyList()   // 함수 실행
@@ -45,6 +48,13 @@ function printReplyList(list) {   //댓글 목록을 ul 태그 안에 넣어 주
 
         })  //for 끝
         replyUl.innerHTML = str
+		
+		document.querySelectorAll('textarea')
+		            .forEach(ele =>{
+		            ele.style.height='auto'
+		            ele.style.height = ele.scrollHeight + 'px'
+		                ele.style.overflow='hidden'   //스크롤바 숨기기
+		        })
     } //if 끝
 	else {
 		 replyUl.innerHTML = '작성된 댓글이 없습니다.'
@@ -54,7 +64,6 @@ function printReplyList(list) {   //댓글 목록을 ul 태그 안에 넣어 주
 document.getElementById('btnSave').addEventListener('click',commentSave)
 function commentSave(){
 	const sessionId = sessionStorage.getItem('sessionId')
-	const username = sessionStorage.getItem('username')
 	
 	//값을 writer,content , mref 가져오기
 	const mref = document.getElementById('mref').value
@@ -67,7 +76,7 @@ function commentSave(){
 			method: 'POST',
 			headers : {
 				'Content-Type': 'application/json;charset=UTF-8',
-				Authorization : `${username} ${sessionId}`
+				Authorization : `${sessionId}`
 			},
 			body : JSON.stringify(obj) //jsonStr
 	}
