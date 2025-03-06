@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.iclass.board.dto.CommunityDTO;
 import org.iclass.board.dto.PageResponseDTO;
+import org.iclass.board.dto.UserAccount;
 import org.iclass.board.service.CommunityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,14 @@ public class CommunityController {
 	
 	//글 수정
 	@GetMapping("/community/modify")
-	public String modify(int idx, int page,Model model) {
+	public String modify(int idx, int page,Model model
+				,HttpSession session) throws IllegalAccessException {
+		String username = (String)session.getAttribute("username");
+		CommunityDTO dto = service.read(idx,false);
+		//권한 검사
+		if(!dto.getWriter().equals(username)) {
+			throw new IllegalAccessException();
+		}
 		
 		model.addAttribute("dto", service.read(idx,false));
 		model.addAttribute("page", page);
@@ -55,7 +63,14 @@ public class CommunityController {
 	}
 	// 글 삭제
 	@PostMapping("/community/remove")
-	public String remove(int idx, int page,RedirectAttributes reAttr) {
+	public String remove(int idx, int page,RedirectAttributes reAttr
+			,HttpSession session) throws IllegalAccessException {
+		String username = (String)session.getAttribute("username");
+		CommunityDTO dto = service.read(idx,false);
+		//권한 검사
+		if(!dto.getWriter().equals(username)) {
+			throw new IllegalAccessException();
+		}
 		service.remove(idx);
 		reAttr.addAttribute("page", page);
 		return "redirect:list";   
