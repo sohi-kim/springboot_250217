@@ -42,7 +42,7 @@ public class CommunityController {
 				,HttpSession session) throws IllegalAccessException {
 		String username = (String)session.getAttribute("username");
 		CommunityDTO dto = service.read(idx,false);
-		//권한 검사
+		//권한 검사 : 글작성자와 로그인사용자 비교
 		if(!dto.getWriter().equals(username)) {
 			throw new IllegalAccessException();
 		}
