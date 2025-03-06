@@ -48,7 +48,7 @@ class CommunityCommentServiceTest {
 	@Test
 	@DisplayName("메인글 510번의 댓글 26번 삭제하기")
 	void remove() {
-		int result = service.commentRemove(26,510);
+		int result = service.commentRemove(26);
 		log.info("변경된 댓글 갯수 : {}",mapper.selectCommentCount(510));
 		assertEquals(1, result);
 	}

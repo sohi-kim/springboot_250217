@@ -1,6 +1,7 @@
 /**
  * 댓글 기능 api 실행
  */
+
 const replyUl = document.getElementById("replyList")
 getReplyList()   // 함수 실행
 
@@ -52,16 +53,21 @@ function printReplyList(list) {   //댓글 목록을 ul 태그 안에 넣어 주
 
 document.getElementById('btnSave').addEventListener('click',commentSave)
 function commentSave(){
+	const sessionId = sessionStorage.getItem('sessionId')
+	const username = sessionStorage.getItem('username')
+	
 	//값을 writer,content , mref 가져오기
 	const mref = document.getElementById('mref').value
 	const writer = document.getElementById('writer').value
 	const content = document.getElementById('content').value
 	const obj = {mref,writer, content}
+
 	//fetch 실행
 	const options = {
 			method: 'POST',
 			headers : {
-				'Content-Type': 'application/json;charset=UTF-8'
+				'Content-Type': 'application/json;charset=UTF-8',
+				Authorization : `${username} ${sessionId}`
 			},
 			body : JSON.stringify(obj) //jsonStr
 	}
@@ -93,10 +99,16 @@ replyUl.addEventListener('click',function(e){
 
 
 function commentRemove(idx){
+	const sessionId = sessionStorage.getItem('sessionId')
+	const username = sessionStorage.getItem('username')
 	//삭제할 때 idx, mref
-	const mref = document.getElementById('mref').value
-	const options = { method : 'DELETE'}
-	const url = `/api/comments?idx=${idx}&mref=${mref}`
+	const options = { 
+		method : 'DELETE',
+		headers : {
+			Authorization : `${username} ${sessionId}`
+		}
+	}
+	const url = `/api/comments/${idx}`
 	fetch(url,options)
 	   .then(response => {return response.json()})
 	   .then(data => {

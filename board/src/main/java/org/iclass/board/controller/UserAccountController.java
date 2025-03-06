@@ -41,8 +41,10 @@ public class UserAccountController {
 		log.info("login 계정 정보 : {} ", account);
 		
 		if(account != null) {
-			session.setAttribute("username", account.getUserid());   
 			// ★★★★★★★ 로그인기능-세션활용
+			session.setAttribute("username", account.getUserid());   
+			session.setAttribute("sessionId", session.getId());      // 비동기 요청에 사용
+			if (referer.contains("/login")) referer="/";
 			return "redirect:"+referer;     //저장되 세션 애트리뷰트 referer 로 리다이렉트
 		}else {  //로그인 실패
 			reAttr.addFlashAttribute("fail", "y");
