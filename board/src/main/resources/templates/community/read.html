@@ -94,12 +94,19 @@
         <div class="row mt-3">
             <div id="errMsg" style="color: red; font-size: 0.85em;"></div>
             <div class="row">
-                <input type="text" id="writer" th:value="${session.username}">
+                <input type="hidden" id="writer" th:value="${session.username}">
                 <input type="hidden" id="mref" th:value="${dto.idx}">
                 <div class="input-group mb-3">
                     <textarea class="form-control" rows="4" id="content"></textarea>
+                    <th:block th:if="${session.username !=null }">
                     <button type="button" class="btn btn-outline-secondary" id="btnSave">
                         저장</button>
+                    </th:block> 
+                    <th:block th:if="${session.username ==null }">
+                    <button type="button" class="btn btn-outline-secondary"
+                                  onclick="location.href='/login'">
+                     로그인</button>
+                    </th:block>   
                 </div>
             </div>
             <hr/>
@@ -124,5 +131,10 @@
 	<script type="text/javascript" src="/js/comments.js"></script>
 </body>
 </html>
+
+
+
+
+
 
 
