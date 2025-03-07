@@ -25,16 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class APICommunityCommentController {
 	private final CommunityCommentService service;
 	
-	// 비동기 통신에서 session 사용
-	@GetMapping("/api/me")
-	public ResponseEntity<?> auth(HttpSession session){
-		Map<String, String> map = new HashMap<>();
-		map.put("sessionId", session.getId());
-		map.put("username", (String)session.getAttribute("username"));
-		log.info("sessionId : {}", map.get("sessionId"));
-		log.info("username : {}", map.get("username"));
-		return ResponseEntity.ok().body(map );
-	}
+	
 	
 	//1. 댓글 리스트 요청
 	@GetMapping("/api/comments/{mref}")
@@ -48,9 +39,14 @@ public class APICommunityCommentController {
 	public ResponseEntity<?> comments(@RequestBody CommunityCommentDTO dto,
 			HttpServletRequest request){
 		HttpSession session = request.getSession();
+		String username = (String)session.getAttribute("username");		// 로그인 사용자
 		log.info("Authorization : {}", request.getHeader("Authorization"));
+		String requsername = request.getHeader("Authorization").split(" ")[0];  // 요청 사용자
+		String sessionId = request.getHeader("Authorization").split(" ")[1];	// 요청 세션ID
+		log.info("Authorization split: {} {}", requsername, sessionId);
 		if(request.getHeader("Authorization") == null || 
-				!session.getId().equals(request.getHeader("Authorization"))) {
+				!session.getId().equals(sessionId) || 
+				!requsername.equals(username)) {
 			return ResponseEntity.badRequest().body("잘못된 접근입니다.");
 		}
 		int result = service.commentSave(dto);
@@ -61,11 +57,12 @@ public class APICommunityCommentController {
 	public ResponseEntity<?> comments(@PathVariable int idx,   //*idx 값만 사용하는 것으로 변경
 			HttpServletRequest request){
 		HttpSession session = request.getSession();
-//		String username = (String)session.getAttribute("username");
+		String username = (String)session.getAttribute("username");       // 로그인 사용자
 		log.info("Authorization : {}", request.getHeader("Authorization"));
-		String username = request.getHeader("Authorization").split(" ")[0];
-		String sessionId = request.getHeader("Authorization").split(" ")[1];
-		if(sessionId == null || 
+		String requsername = request.getHeader("Authorization").split(" ")[0];	// 요청 사용자
+		String sessionId = request.getHeader("Authorization").split(" ")[1];	// 요청 세션ID
+		log.info("Authorization split: {} {}", requsername, sessionId);
+		if(request.getHeader("Authorization") == null || 
 				!session.getId().equals(sessionId)) {
 			return ResponseEntity.badRequest().body("잘못된 접근입니다.");
 		}else if(!service.getWriter(idx).equals(username)) {
