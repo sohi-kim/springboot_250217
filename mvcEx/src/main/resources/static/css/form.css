@@ -10,10 +10,14 @@
 
 /* > 기호는 자식, + 기호는 형제 선택자 , 기호는 목록 나열 */
 div.input-group > input + span ,div.input-group > select + span , 
-div.form-floating > input + span , div#fail{
+div.form-floating > input + span , div#fail,
+div.mb-1 > input + label{
 	color:red;
 	font-size: 0.7rem;
 	padding-left: 15px;
+}
+div.mb-1 > input {
+	margin-bottom: 0px;
 }
 
 /* 로그인 폼 5_login.jsp */

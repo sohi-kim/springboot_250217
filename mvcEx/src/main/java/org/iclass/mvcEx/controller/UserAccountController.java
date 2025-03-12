@@ -17,10 +17,18 @@ import lombok.extern.slf4j.Slf4j;
 public class UserAccountController {
 	private UserAccountService service;
 	
-	//레이아웃 샘플페이지
-	@GetMapping("/sample")
-	public String sample() {
-		return "sample";
+	
+	@GetMapping("/join")
+	public String join() {
+		return "join";
+	}
+	
+	@PostMapping("/join")
+	public String join(UserAccount dto,RedirectAttributes reAttr) {
+		log.info("join dto : {}",dto);
+		service.join(dto);
+		reAttr.addFlashAttribute("message", "회원 가입 완료 했습니다.");
+		return "redirect:/";
 	}
 	
 	@GetMapping("/login")
