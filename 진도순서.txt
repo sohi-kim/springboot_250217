@@ -1,0 +1,9 @@
+
+
+1. demo   
+2. BeanEx
+3. webEx   - 파라미터,모델(애트리뷰트),타임리프
+4. mybatisEx
+5. mvcEx
+6. board  (댓글은 restApi)
+6. restApi

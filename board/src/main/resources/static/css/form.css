@@ -12,7 +12,7 @@
 div.input-group > input + span ,div.input-group > select + span , 
 div.form-floating > input + span , div#fail,
 div.mb-1 > input + label{
-	color:red;
+	color:rgb(202, 202, 0);
 	font-size: 0.7rem;
 	padding-left: 15px;
 }

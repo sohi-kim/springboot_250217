@@ -1,5 +1,4 @@
 package org.iclass.mvcEx.controller;
-
 import org.iclass.mvcEx.dto.UserAccount;
 import org.iclass.mvcEx.service.UserAccountService;
 import org.springframework.stereotype.Controller;
@@ -59,10 +58,4 @@ public class UserAccountController {
 		reAttr.addFlashAttribute("message", "로그 아웃 했습니다.");
 		return "redirect:/";    // context path 라고 부르고 화면은 index.html
 	}
-	
-
-	
-	
-	
-	
 }

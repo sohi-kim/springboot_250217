@@ -1,9 +1,6 @@
 package org.iclass.board.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.iclass.board.dto.CommunityCommentDTO;
 import org.iclass.board.service.CommunityCommentService;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +16,11 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@RequiredArgsConstructor   // final 키워드 변수만 초기화하는 생성자
+@RequiredArgsConstructor   
 @Slf4j
 @RestController
 public class APICommunityCommentController {
 	private final CommunityCommentService service;
-	
 	
 	
 	//1. 댓글 리스트 요청
